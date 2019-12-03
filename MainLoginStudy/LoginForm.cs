@@ -13,6 +13,7 @@ namespace MainLoginStudy
     public delegate void EventHandler(string userName);
     public partial class LoginForm : Form
     {
+        //MainForm mainForm = new MainForm();
         public event EventHandler LoginEventHandler;
 
         public LoginForm()
@@ -20,7 +21,7 @@ namespace MainLoginStudy
             InitializeComponent();
         }
 
-        private void OK_Click(object sender, EventArgs e)
+        public void OK_Click(object sender, EventArgs e)
         {
             LoginHandler loginHandler = new LoginHandler();
 
@@ -47,8 +48,9 @@ namespace MainLoginStudy
 
         private void Cancel_Click(object sender, EventArgs e)
         {
+
             //캔슬입력시 클로즈
-            Dispose();
+            this.Close();
         }
 
         //널체크기
@@ -69,5 +71,31 @@ namespace MainLoginStudy
             //성공
             return true;
         }
+
+        //버튼key검증
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            Keys key = keyData & ~(Keys.Shift | Keys.Control);
+            switch (key)
+            {
+                // enterKey
+                case Keys.Enter:
+                    //if ((keyData & Keys.Control) != 0)
+                    //{
+                        //LoginForm loginForm = new LoginForm();
+                        //loginForm.OK_Click
+            
+                        OK.PerformClick(); // OK엔터시클릭.
+                        return true;
+                    //}
+                    /*break;*/
+            }
+            return false;
+
+        }
+
+
+
+
     }
 }
