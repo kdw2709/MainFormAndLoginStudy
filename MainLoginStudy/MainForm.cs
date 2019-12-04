@@ -22,6 +22,8 @@ namespace MainLoginStudy
 
     public partial class MainForm : Form
     {
+
+        //전역변수 설정
         LoginForm loginForm;
         private int itemCnt = 0;
         private int sumMoney = 0;
